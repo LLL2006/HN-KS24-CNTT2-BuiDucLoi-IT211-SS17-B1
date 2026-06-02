@@ -1,13 +1,5 @@
-Nguyên nhân là do cấu hình hiện tại chỉ kiêểm tra đã đăng nhập hay chưa chuws k kiểm tra role để phaân quyền cho người duùng
+JWT ko hợp lệ vì lúc tạo token dùng key nhungw lúc xác minh token lại dùng differentKey nên mỗi lần gọi Keys.secretKeyFor(...) 
+nó sẽ tạo ra một Secret Key mới hoàn toàn.
 
-Cấu hình hiện tại:
+JWT được ký bằng key, nhưng lại đem xác minh bằng differentKey, nên chữ ký không khớp.
 
-.authorizeHttpRequests(authorize -> authorize
-.requestMatchers("/").permitAll()
-.anyRequest().authenticated()
-)
-
-Ý nghĩa:
-
-/ → ai cũng truy cập được.
-anyRequest().authenticated() → mọi URL còn lại chỉ cần đăng nhập là được.
